@@ -6,6 +6,15 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { IamModule } from './iam/iam.module';
 import { validateSchemaEnv } from './helpers/validation-schema-env';
+import { Product } from './products/models/product.model';
+import { Customer } from './customers/models/customer.model';
+import { Supplier } from './suppliers/models/supplier.model';
+import { Order } from './orders/models/order.model';
+import { OrderItem } from './orders/models/order-item.model';
+import { ProductsModule } from './products/products.module';
+import { CustomersModule } from './customers/customers.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -25,7 +34,14 @@ import { validateSchemaEnv } from './helpers/validation-schema-env';
         password: config.get<string>('TYPEORM_PASSWORD'),
         database: config.get<string>('TYPEORM_DATABASE'),
         synchronize: true,
-        entities: [__dirname + '/**/*.{model,entity}.{ts,js}'],
+        entities: [
+          Product,
+          Customer,
+          Supplier,
+          Order,
+          OrderItem,
+          __dirname + '/**/*.{model,entity}.{ts,js}'
+        ],
         migrations: ['dist/migrations/**/*.js'],
         subscribers: ['dist/subscriber/**/*.js'],
         cli: {
@@ -36,6 +52,10 @@ import { validateSchemaEnv } from './helpers/validation-schema-env';
     }),
     IamModule,
     UsersModule,
+    ProductsModule,
+    CustomersModule,
+    SuppliersModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

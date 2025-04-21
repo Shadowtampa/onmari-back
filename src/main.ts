@@ -9,6 +9,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { registerFastifyPlugins } from './common/plugins/register-fastify.plugins';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const fastifyAdapter = new FastifyAdapter();
@@ -23,6 +24,20 @@ async function bootstrap() {
     },
   );
   const configService = app.get<ConfigService>(ConfigService);
+
+  // Configuração do Swagger
+  const config = new DocumentBuilder()
+    .setTitle('API de Gerenciamento de Pedidos')
+    .setDescription('API para gerenciamento de produtos, clientes, fornecedores e pedidos')
+    .setVersion('1.0')
+    .addTag('Produtos')
+    .addTag('Clientes')
+    .addTag('Fornecedores')
+    .addTag('Pedidos')
+    .build();
+  
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
 
   // Plugins for Fastify
   registerFastifyPlugins(app);
@@ -52,7 +67,7 @@ async function bootstrap() {
       'Environment',
     );
 
-    Logger.debug(`Url for OpenApi: ${await app.getUrl()}/docs`, 'Swagger');
+    Logger.debug(`Url for OpenApi: ${await app.getUrl()}/api/docs`, 'Swagger');
   }
 }
 bootstrap();
