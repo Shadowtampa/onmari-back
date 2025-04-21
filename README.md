@@ -1,225 +1,124 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# 🤖 ChatERP — ERP Conversacional com Ações via Chatbot
 
-# NestJSApiBoilerplateJWT
+> Plataforma ERP moderna com controle total via chatbot inteligente.  
+> Foco: Micro e pequenos empreendedores que precisam de agilidade e simplicidade.
 
-An API Boilerplate to create a ready-to-use REST API in seconds with NestJS 11.x and JWT Auth System :heart_eyes_cat:
+---
 
-## Installation
+## 🧭 Visão Geral
 
-```bash
-   pnpm install
-```
+O **ChatERP** é um sistema de gestão empresarial pensado para funcionar com ou sem interface gráfica, usando um **chatbot inteligente como principal ponto de interação**. Ele permite que usuários cadastrem produtos, fornecedores, registrem vendas, consultem resumos de caixa e muito mais — tudo através de linguagem natural.
 
-## Set Environment for secret key JWT and other configurations
+Este ERP é orientado à produtividade, escalabilidade e automação de tarefas operacionais.  
 
-```bash
-   cp .env.example .env
-```
+---
 
-To set up on multiple environments, such as dev, stage or prod, we do as follows:
+## 🧱 Stack Técnica
 
-```bash
-   cp .env.example .env.dev # or .env.stage, etc
-```
+- **Backend:** Laravel + Laravel Octane
+- **Banco de Dados:** MySQL ou PostgreSQL
+- **IA/NLP:** Ollama (modelo local customizado) + pipeline de prompts
+- **Chatbot:** Plataforma via WhatsApp (usando providers como Z-API ou Twilio)
+- **Frontend (futuro):** React com Admin Panel (modular)
+- **Infra:** Docker + NGINX + GitHub Actions para CI/CD
+- **Documentação:** Swagger + Markdown Readmes
 
-## Config settings .env for sending a notification when a user registers, forgets password or changes password
+---
 
-```
-   EMAIL_HOST=smtp.mailtrap.io
-   EMAIL_PORT=2525
-   EMAIL_AUTH_USER=[:user]
-   EMAIL_AUTH_PASSWORD=[:password]
-   EMAIL_DEBUG=true
-   EMAIL_LOGGER=true
-```
+## 🧩 Módulos Principais
 
-## Config settings .env to connect MySQL
+### 🔹 Core ERP
+- Cadastro de produtos, fornecedores, clientes
+- Registro de vendas e entradas
+- Relatórios e resumos financeiros
 
-Once the database has been configured, start the Nest App via `pnpm run start:dev` it automatically synchronizes the entities so it is ready to use.
+### 🔹 Chatbot Inteligente
+- Interface natural para interações via WhatsApp
+- Ações baseadas em intenção (ex: "cadastrar um produto novo")
+- Confirmações, fallback e resumos
 
-```
-   TYPEORM_CONNECTION = "mysql"
-   TYPEORM_HOST = "localhost"
-   TYPEORM_PORT = 3306
-   TYPEORM_USERNAME = [:user]
-   TYPEORM_PASSWORD = [:password]
-   TYPEORM_DATABASE = [:database]
-   TYPEORM_AUTO_SCHEMA_SYNC = true
-   TYPEORM_ENTITIES = "dist/**/*.entity.js"
-   TYPEORM_SUBSCRIBERS = "dist/subscriber/**/*.js"
-   TYPEORM_MIGRATIONS = "dist/migrations/**/*.js"
-   TYPEORM_ENTITIES_DIR = "src/entity"
-   TYPEORM_MIGRATIONS_DIR = "src/migration"
-   TYPEORM_SUBSCRIBERS_DIR = "src/subscriber"
-```
+### 🔹 Motor de Prompt
+- Sistema interno que transforma mensagens em comandos de API
+- Baseado em contexto e dados estruturados
+- Aprende com as interações
 
-## Install TypeScript Node
+### 🔹 Painel Administrativo (futuro)
+- Acesso a dados em modo visual
+- Histórico de interações
+- Controle granular de permissões
 
-```bash
-   pnpm install -g ts-node
-```
+---
 
-## Running migrations with typeorm
+## 🚀 MVP – Produto Mínimo Viável
 
-```bash
-   ts-node node_modules/.bin/typeorm migration:run -d dist/typeorm-cli.config
-```
+**Objetivo:** permitir que o usuário crie produtos e fornecedores via chatbot, e consulte resumos diários de vendas.
 
-or
+### Funcionalidades MVP:
+- [ ] Integração básica do chatbot com backend
+- [ ] Ação: Criar produto via chat
+- [ ] Ação: Criar fornecedor via chat
+- [ ] Ação: Consultar resumo diário
+- [ ] Confirmação por mensagens e fallback de erro
+- [ ] Documentação da API (Swagger)
 
-```bash
-   node_modules/.bin/typeorm migration:run -d dist/typeorm-cli.config
-```
+---
 
-## Running the app
+## 📆 Milestones
 
-```bash
-    # development
-    $ pnpm start
+### 📍 Semana 1-2
+- Setup do projeto Laravel
+- Definição dos modelos: Produto, Fornecedor, Venda
+- Setup da base do chatbot (escutador + roteador)
 
-    # watch mode
-    $ pnpm start:dev
+### 📍 Semana 3-4
+- Implementação das primeiras intenções: criar produto, criar fornecedor
+- Integração com banco de dados
+- Validação via testes simulados
 
-    # production mode
-    $ pnpm start:prod
-```
+### 📍 Semana 5-6
+- Implementação do resumo diário (receitas, vendas, top produtos)
+- Refino da UX conversacional
+- Deploy local com Docker
 
-## Running the app in REPL mode
+### 📍 Semana 7-8
+- Logs + fallback de mensagens
+- Documentação técnica + uso
+- Primeiros testes com usuários reais (validação de mercado)
 
-```bash
-   pnpm start --entryFile repl
-```
+---
 
-or
+## 🛣️ Roadmap Futuro
 
-```bash
-   pnpm start:repl
-```
+- Ações mais complexas: edição de dados, cancelamentos, estoque
+- Detecção de intenções com modelos LLM customizados
+- Suporte a múltiplas empresas
+- Módulo financeiro integrado
+- App mobile (Progressive Web App)
 
-## Docker
+---
 
-There is a `docker-compose.yml` file for starting MySQL with Docker.
+## 🧑‍💻 Time Inicial
 
-`$ docker-compose up db`
+- **Luis Gomes** – Fullstack Developer e idealizador
+- **Lucas De Andrade** – Especialista em IA e NLP
 
-After running, you can stop the Docker container with
+---
 
-`$ docker-compose down`
+## 📜 Licença
 
-## Url Swagger for Api Documentation
+Código fechado no momento. Projeto sob gestão da **XDZ Tech**. Para parcerias, entre em contato.
 
-```
+---
 
-http://127.0.0.1:3000/docs
+## 📞 Contato
 
-```
+Para dúvidas, parcerias ou colaboração:
 
-or
+**Luis Gomes**  
+📍 Santarém - PA  
+📧 xdztech@contato.com  
+📲 WhatsApp: +55 (93) [seu número]
 
-```
+---
 
-http://127.0.0.1:3000/docs-json
-
-```
-
-or
-
-```
-
-http://127.0.0.1:3000/docs-yaml
-
-```
-
-Configure `SWAGGER_USER` and `SWAGGER_PASSWORD` in the .env file for to access the Swagger(Open API) documentation with basic authentication. `NODE_ENV`
-must not be equal to "production" otherwise the Swagger is not displayed.
-
-```
-NODE_ENV=[:enviroments]
-SWAGGER_USER=[:user]
-SWAGGER_PASSWORD=[:password]
-
-```
-
-## Configuring the SERVER_PORT environment variable as the default port if you don't want to use the default
-
-```
-   SERVER_PORT=3333
-```
-
-## Configuring the ENDPOINT_URL_CORS environment variable for app frontend
-
-```
-   ENDPOINT_URL_CORS='http://127.0.0.1:4200'
-```
-
-## Getting secure resource with Curl
-
-```bash
-    curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:3000/api/secure  -H 'Authorization: Bearer [:token]'
-```
-
-## Generate Token JWT Authentication with Curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com", "password": "mysecret"}' http://127.0.0.1:3000/api/auth/login
-```
-
-## Registration user with Curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X POST -d '{"name": "tony", "email": "tony_admin@nest.com", "username":"tony_admin", "password": "mysecret"}' http://127.0.0.1:3000/api/auth/register
-```
-
-## Refresh token with curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X POST -d '{"refreshToken": "[:token]"}' http://127.0.0.1:3000/api/auth/refresh-tokens
-```
-
-## Forgot password with curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com"}' http://127.0.0.1:3000/api/auth/forgot-password
-```
-
-## Change password User with curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com", "password": "new_password"}' http://127.0.0.1:3000/api/auth/change-password  -H 'Authorization: Bearer [:token]'
-```
-
-## Update profile User with curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X PUT -d '{"name": "tony", "email": "tony_admin@nest.com", "username": "tony_admin"}' http://127.0.0.1:3000/api/users/:id/profile  -H 'Authorization: Bearer [:token]'
-```
-
-## Users list with Curl
-
-```bash
-   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X GET http://127.0.0.1:3000/api/users  -H 'Authorization: Bearer [:token]'
-```
-
-## User by Id with Curl
-
-```bash
-   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X GET http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
-```
-
-## Update User with Curl
-
-```bash
-   curl -H 'content-type: application/json' -v -X PUT -d '{"name": "tony", "email": "tony_admin@nest.com", "username": "tony_admin", "password":"password_update"}' http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
-```
-
-## Delete User by Id with Curl
-
-```bash
-   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X DELETE http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
-```
-
-## License
-
-[MIT licensed](LICENSE)
+> “A interface mais acessível do mundo é a linguagem.” — visão de produto do ChatERP

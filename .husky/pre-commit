@@ -1,1 +1,4 @@
-pnpm test
+# Verifica se há mudanças em arquivos de teste ou código fonte
+if git diff --cached --name-only | grep -E '\.(ts|js)$' > /dev/null; then
+  yarn test
+fi
